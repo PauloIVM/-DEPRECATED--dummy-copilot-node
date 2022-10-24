@@ -1,8 +1,4 @@
-"use strict";
-
-/* === CODES FIRST, ID SECOND ===*/
-
-var Keys = {
+export default {
     "1": "escape",
     "2": "1",
     "3": "2",
@@ -148,7 +144,5 @@ var Keys = {
     "192": "f22",
     "193": "f23",
     "194": "f24",
-    "240": "KEY_UNKNOWN"
+    "240": "KEY_UNKNOWN",
 };
-
-module.exports = Keys;

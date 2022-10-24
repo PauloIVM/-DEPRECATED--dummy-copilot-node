@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "esModuleInterop": true,
+        "lib": ["esnext", "dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "noLib": false,
+        "rootDirs": [
+            "src"
+        ],
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "outDir": "build",
+        "removeComments": true,
+        "sourceMap": true,
+        "target": "esnext"
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "build"
+    ]
+}

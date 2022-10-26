@@ -1,3 +1,7 @@
+import shortcutsFile from "./../../shortcuts.config.json";
+
+export type ShortcutsFile = typeof shortcutsFile;
+
 export interface Shortcut {
     // TODO: O trigger é só "down" | "up"... preciso implementar um parser do JSON que
     // converta o "tap".

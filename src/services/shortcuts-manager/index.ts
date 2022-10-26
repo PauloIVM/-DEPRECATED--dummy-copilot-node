@@ -42,35 +42,25 @@ export default class ShortcutsManager {
     }
 
     private execActions(actions: Shortcut["actions"]) {
+        const actionTypeMethods = {
+            "sequence": this.execSequenceAction,
+            "paste": this.execPasteAction,
+        }
         for (const action of actions) {
-            if (action.actionType === "sequence") {
-                this.execSequenceAction(action);
-                continue;
-            }
-            if (action.actionType === "paste") {
-                this.execPasteAction(action);
-                continue;
-            }
+            actionTypeMethods[action.actionType](action);
         }
     }
 
     private execSequenceAction(action: Action) {
         if (!action?.keys) {
-            // TODO: Adicionar throw??
             return;
         }
-        action.keys.forEach((key) => {
-            const value = key.keyId;
-            if (key.clickType === "tap") {
-                robot.keyTap(value);
-            }
-            if (key.clickType === "down") {
-                robot.keyToggle(value, "down");
-            }
-            if (key.clickType === "up") {
-                robot.keyToggle(value, "up");
-            }
-        });
+        const clickTypeMethods = {
+            "tap": (value: string) => { robot.keyTap(value) },
+            "down": (value: string) => { robot.keyToggle(value, "down") },
+            "up": (value: string) => { robot.keyToggle(value, "up") },
+        }
+        action.keys.forEach(({ keyId, clickType }) => { clickTypeMethods[clickType](keyId) });
     }
 
     private execPasteAction(action: Action) {

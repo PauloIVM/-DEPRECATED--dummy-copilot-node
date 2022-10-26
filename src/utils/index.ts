@@ -1,5 +1,6 @@
-// eslint-disable-next-line complexity
-export function contains(arrayA, arrayB): boolean {
+import { Key } from "../types/shortcut";
+
+export function contains(arrayA: Key[], arrayB: Key[]): boolean {
     for (let index = 0; index < arrayA.length; index++) {
         const elementA = arrayA[index];
         const elementB = arrayB[index];
@@ -7,13 +8,17 @@ export function contains(arrayA, arrayB): boolean {
             continue;
         }
 
-        if (elementA.keyId !== elementB.keyId || elementA.clickType !== elementB.clickType) {
+        if (!_isSameKey(elementA, elementB)) {
             return false;
         }
     }
     return true;
 }
 
-export function hasSameLength(arrayA, arrayB): boolean {
+export function hasSameLength<T>(arrayA: Array<T>, arrayB: Array<T>): boolean {
     return arrayA.length === arrayB.length;
+}
+
+function _isSameKey(keyA: Key, keyB: Key) {
+    return keyA.keyId === keyB.keyId && keyA.clickType === keyB.clickType;
 }

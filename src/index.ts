@@ -1,57 +1,69 @@
 import { contains, hasSameLength } from "./utils";
+import { Shortcut, Action, Key } from "./types/shortcut";
 import Keyboard from "./lib/keylogger";
-import commands from "../commands.config.json";
+import shortcutsFile from "../shortcuts.config.json";
 import robot from "robotjs";
 
-// TODO: Reescrever a lib em TS e arrumar tipagens
-const k = new Keyboard("event3") as any;
-let keyStack = [];
-
+const k = new Keyboard("event3");
 k.on("up", onClick);
 k.on("down", onClick);
 
-// k.on('up', console.log);
-// k.on('down', console.log);
-// k.on('hold', console.log);
+let keysClickedQueue: Key[] = [];
 
 function onClick({ keyId, type }) {
-    keyStack.push({ keyId, clickType: type });
+    keysClickedQueue.push({ keyId, clickType: type });
 
-    const command = commands.shortcuts.find((cmd) => {
-        return contains(cmd.trigger, keyStack);
-    });
+    // TODO: Criar parser e validador do arquivo de entrada:
+    const shortcut = shortcutsFile.shortcuts.find((cmd) => {
+        return contains(cmd.trigger as Key[], keysClickedQueue);
+    }) as Shortcut;
 
-    if (!command) {
-        keyStack = [];
+    if (!shortcut) {
+        keysClickedQueue = [];
         return;
     }
-    if (hasSameLength(command.trigger, keyStack)) {
-        execActions(command);
-        keyStack = [];
+
+    if (hasSameLength(shortcut.trigger, keysClickedQueue)) {
+        _execActions(shortcut.actions);
+        keysClickedQueue = [];
     }
 }
 
-// TODO: Criar tipagens
-function execActions(command) {
-    for (const action of command.actions) {
+function _execActions(actions: Shortcut["actions"]) {
+    for (const action of actions) {
         if (action.actionType === "sequence") {
-            action.keys.forEach((key) => {
-                const value = key.keyId;
-                if (key.clickType === "tap") {
-                    robot.keyTap(value);
-                }
-                if (key.clickType === "down") {
-                    robot.keyToggle(value, "down");
-                }
-                if (key.clickType === "up") {
-                    robot.keyToggle(value, "up");
-                }
-            });
+            _execSequenceAction(action);
             continue;
         }
         if (action.actionType === "paste") {
-            robot.typeString(action.content);
+            _execPasteAction(action);
             continue;
         }
     }
+}
+
+function _execSequenceAction(action: Action) {
+    if (!action?.keys) {
+        // TODO: Adicionar throw??
+        return;
+    }
+    action.keys.forEach((key) => {
+        const value = key.keyId;
+        if (key.clickType === "tap") {
+            robot.keyTap(value);
+        }
+        if (key.clickType === "down") {
+            robot.keyToggle(value, "down");
+        }
+        if (key.clickType === "up") {
+            robot.keyToggle(value, "up");
+        }
+    });
+}
+
+function _execPasteAction(action: Action) {
+    if (!action?.content) {
+        return;
+    }
+    robot.typeString(action.content);
 }

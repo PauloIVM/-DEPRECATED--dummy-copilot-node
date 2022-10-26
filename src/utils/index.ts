@@ -7,7 +7,7 @@ export function contains(arrayA, arrayB): boolean {
             continue;
         }
 
-        if (elementA.keyId !== elementB.keyId || elementA.type !== elementB.type) {
+        if (elementA.keyId !== elementB.keyId || elementA.clickType !== elementB.clickType) {
             return false;
         }
     }

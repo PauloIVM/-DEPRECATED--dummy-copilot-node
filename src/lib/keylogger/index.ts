@@ -35,6 +35,7 @@ class Keyboard extends EventEmitter {
         const self = this;
 
         this.data.on("data", function (data) {
+            // TODO: Aqui deveria ser o self.buffer. Parece que o alloc é desnecessário?
             this.buffer = data.slice(24);
             if (this.buffer.readUInt16LE(16) !== EV_KEY) {
                 return;

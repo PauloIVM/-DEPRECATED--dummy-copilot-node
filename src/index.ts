@@ -15,9 +15,9 @@ k.on("down", onClick);
 // k.on('hold', console.log);
 
 function onClick({ keyId, type }) {
-    keyStack.push({ keyId, type });
+    keyStack.push({ keyId, clickType: type });
 
-    const command = commands.find((cmd) => {
+    const command = commands.shortcuts.find((cmd) => {
         return contains(cmd.trigger, keyStack);
     });
 
@@ -34,9 +34,9 @@ function onClick({ keyId, type }) {
 // TODO: Criar tipagens
 function execActions(command) {
     for (const action of command.actions) {
-        if (action.type === "sequence") {
+        if (action.actionType === "sequence") {
             action.keys.forEach((key) => {
-                const value = key.key;
+                const value = key.keyId;
                 if (key.clickType === "tap") {
                     robot.keyTap(value);
                 }
@@ -49,7 +49,7 @@ function execActions(command) {
             });
             continue;
         }
-        if (action.type === "paste") {
+        if (action.actionType === "paste") {
             robot.typeString(action.content);
             continue;
         }

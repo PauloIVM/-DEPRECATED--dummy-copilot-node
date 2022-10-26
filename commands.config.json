@@ -1,67 +1,75 @@
-[
-    {
-        "trigger": [
-            {
-                "keyId": "shift",
-                "type": "down"
-            }, {
-                "keyId": "c",
-                "type": "down"
-            }
-        ],
-        "actions": [{
-            "type": "paste",
-            "content": "ola :)"
-        }]
-    },
-    {
-        "trigger": [
-            {
-                "keyId": "shift",
-                "type": "down"
-            }, {
-                "keyId": "a",
-                "type": "down"
-            }, {
-                "keyId": "z",
-                "type": "down"
-            }
-        ],
-        "actions": [
-            {
-                "type": "sequence",
-                "keys": [
-                    {
-                        "key": "backspace",
-                        "clickType": "tap"
-                    },
-                    {
-                        "key": "backspace",
-                        "clickType": "tap"
-                    }
-                ]
-            },
-            {
-                "type": "paste",
-                "content": "foo \n bar"
-            },
-            {
-                "type": "sequence",
-                "keys": [
-                    {
-                        "key": "shift",
-                        "clickType": "down"
-                    },
-                    {
-                        "key": "left",
-                        "clickType": "tap"
-                    },
-                    {
-                        "key": "shift",
-                        "clickType": "up"
-                    }
-                ]
-            }
-        ]
-    }
-]
+{
+    "$schema": "./schema.json",
+    "shortcuts": [
+        {
+            "trigger": [
+                {
+                    "keyId": "shift",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "c",
+                    "clickType": "down"
+                }
+            ],
+            "actions": [
+                {
+                    "actionType": "paste",
+                    "content": "ola :)"
+                }
+            ]
+        },
+        {
+            "trigger": [
+                {
+                    "keyId": "shift",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "a",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "z",
+                    "clickType": "down"
+                }
+            ],
+            "actions": [
+                {
+                    "actionType": "sequence",
+                    "keys": [
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
+                        },
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
+                        }
+                    ]
+                },
+                {
+                    "actionType": "paste",
+                    "content": "foo \n bar"
+                },
+                {
+                    "actionType": "sequence",
+                    "keys": [
+                        {
+                            "keyId": "shift",
+                            "clickType": "down"
+                        },
+                        {
+                            "keyId": "left",
+                            "clickType": "tap"
+                        },
+                        {
+                            "keyId": "shift",
+                            "clickType": "up"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

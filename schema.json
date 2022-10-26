@@ -1,0 +1,73 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "properties": {
+        "shortcuts": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [ "trigger", "actions" ],
+                "properties": {
+                    "trigger": {
+                        "$ref": "#/$defs/trigger"
+                    },
+                    "actions": {
+                        "$ref": "#/$defs/actions"
+                    }
+                }
+            },
+            "description": "Provide a 'trigger' to start the shortcut and the 'action' that the shortcut should do."
+        }
+    },
+    "$defs": {
+        "trigger": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "keyId": {
+                        "type": "string",
+                        "description": "Provide a key to trigger the shortcut."
+                    },
+                    "clickType": {
+                        "enum": ["down", "up"],
+                        "description": "Provide the type of key click: 'down' to press and 'up' to release."
+                    }
+                }
+            }
+        },
+        "actions": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [ "actionType" ],
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "Provide some string to be pasted."
+                    },
+                    "keys": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": [ "keyId", "clickType" ],
+                            "properties": {
+                                "keyId": {
+                                    "type": "string",
+                                    "description": "Provide a key to trigger the shortcut."
+                                },
+                                "clickType": {
+                                    "enum": ["down", "up", "tap"],
+                                    "description": "Provide the type of click: 'down' to press, 'up' to release and 'tap' to press and release quickly."
+                                }
+                            }
+                        }
+                    },
+                    "actionType": {
+                        "enum": ["paste", "sequence"],
+                        "description": "Inform the type of action:\n - 'paste': use this by passing a simple string value in the 'content' field, that value will be pasted by this action.\n - 'sequence': use this by passing an array of keys in the 'keys' field, that value will click each key passed."
+                    }
+                }
+            }
+        }
+    }
+}

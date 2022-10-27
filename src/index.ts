@@ -5,7 +5,7 @@ import ShortcutsManager from "./services/shortcuts-manager";
 (function() {
     const shortcutsManager = new ShortcutsManager(
         shortcutsFile,
-        new Keyboard("event3", "linux")
+        new Keyboard("event3")
     );
     shortcutsManager.startShortcutListener();
 })();

@@ -1,9 +1,4 @@
-import { EventEmitter } from "events";
-
-export abstract class Keylogger extends EventEmitter {
-    constructor(device: string, os: string) {
-        super();
-    }
+export interface Keylogger {
     on: (eventName: "up" | "down", listener: (args: KeyEvent) => void) => this;
 }
 

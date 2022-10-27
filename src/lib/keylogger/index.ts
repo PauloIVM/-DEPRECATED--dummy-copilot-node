@@ -2,16 +2,17 @@
 import fs from "fs";
 import toKey from "./keycodes";
 import { Keylogger, KeyEvent } from "../../types/keylogger";
+import { EventEmitter } from "events";
 
 const EVENT_TYPES = ["up", "down", "hold"];
 const EV_KEY = 1;
 
-class Keyboard extends Keylogger {
+class Keyboard extends EventEmitter implements Keylogger {
     private readonly device: string;
     private readonly data: fs.ReadStream;
 
-    constructor(dev: string, os: string) {
-        super(dev, os);
+    constructor(dev: string) {
+        super();
         this.device = dev || "event0";
         this.data = fs.createReadStream("/dev/input/".concat(this.device));
         this.onRead();

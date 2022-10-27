@@ -20,6 +20,14 @@ export class KeyComparatorUtil {
         return keysA.length === keysB.length;
     }
 
+    static isValidKey(key: Key): boolean {
+        if (!key?.clickType || !key.keyId) return false;
+        if (key.clickType !== "down" && key.clickType !== "tap" && key.clickType !== "up") {
+            return false;
+        }
+        return true;
+    }
+
     private static isSameKey(keyA: Key, keyB: Key) {
         return keyA.keyId === keyB.keyId && keyA.clickType === keyB.clickType;
     }

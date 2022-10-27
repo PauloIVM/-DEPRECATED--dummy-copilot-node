@@ -23,14 +23,15 @@
             "type": "array",
             "items": {
                 "type": "object",
+                "required": [ "keyId", "clickType" ],
                 "properties": {
                     "keyId": {
                         "type": "string",
                         "description": "Provide a key to trigger the shortcut."
                     },
                     "clickType": {
-                        "enum": ["down", "up"],
-                        "description": "Provide the type of key click: 'down' to press and 'up' to release."
+                        "enum": ["down", "up", "tap"],
+                        "description": "Provide the type of trigger click: 'down' to press, 'up' to release and 'tap' to press and release quickly."
                     }
                 }
             }

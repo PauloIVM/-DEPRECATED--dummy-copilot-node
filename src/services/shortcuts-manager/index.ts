@@ -1,20 +1,19 @@
 import { KeyComparatorUtil } from "../../utils/key-comparator";
 import { Shortcut, Action, Key } from "../../types/shortcut";
-import { ShortcutsFile } from "../../types/shortcut";
 import { Keylogger, KeyEvent } from "../../types/keylogger";
 import robot from "robotjs";
 
 export default class ShortcutsManager {
-    private shortcutsFile: ShortcutsFile;
+    private shortcuts: Shortcut[];
     private keylogger: Keylogger;
     private keysClickedQueue: Key[] = [];
 
     constructor(
-        shortcutsFile: ShortcutsManager["shortcutsFile"],
+        shortcuts: ShortcutsManager["shortcuts"],
         keylogger: ShortcutsManager["keylogger"],
     ) {
         this.keylogger = keylogger;
-        this.shortcutsFile = shortcutsFile;
+        this.shortcuts = shortcuts;
     }
 
     startShortcutListener() {
@@ -26,7 +25,7 @@ export default class ShortcutsManager {
         this.keysClickedQueue.push({ keyId, clickType });
 
         // TODO: Criar parser e validador do arquivo de entrada:
-        const shortcut = this.shortcutsFile.shortcuts.find((cmd) => {
+        const shortcut = this.shortcuts.find((cmd) => {
             return KeyComparatorUtil.contains(cmd.trigger as Key[], this.keysClickedQueue);
         }) as Shortcut;
 

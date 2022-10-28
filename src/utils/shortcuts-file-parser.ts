@@ -1,4 +1,4 @@
-import { Key, Shortcut, ShortcutsFile } from "../types/shortcut";
+import { Action, Key, Shortcut, ShortcutsFile, TriggerKey } from "../types/shortcut";
 import { KeyComparatorUtil } from "./key-comparator";
 
 export class ShortcutsFileUtil {
@@ -7,14 +7,14 @@ export class ShortcutsFileUtil {
             return;
         }
 
-        return this.parseShortcuts(file.shortcuts as Shortcut[]);
+        return this.parseShortcuts(file.shortcuts);
     }
 
-    private static parseShortcuts(shortcutsOnFile: Shortcut[]): Shortcut[] {
+    private static parseShortcuts(shortcutsOnFile: ShortcutsFile["shortcuts"]): Shortcut[] {
         const parsedShortcuts: Shortcut[] = [];
         for (const shortcut of shortcutsOnFile) {
             const trigger = this.parseTrigger(shortcut?.trigger || []);
-            const actions = this.parseActions((shortcut?.actions || []) as Shortcut["actions"]);
+            const actions = this.parseActions(shortcut?.actions || []);
             if (!trigger?.length || !actions?.length) {
                 continue;
             }
@@ -24,7 +24,9 @@ export class ShortcutsFileUtil {
     }
 
     // eslint-disable-next-line complexity
-    private static parseActions(actionsOnFile: Shortcut["actions"]): Shortcut["actions"] {
+    private static parseActions(
+        actionsOnFile: ShortcutsFile["shortcuts"][0]["actions"],
+    ): Shortcut["actions"] {
         const parsedActions: Shortcut["actions"] = [];
         for (const action of actionsOnFile) {
             const { actionType, content, keys } = action;
@@ -38,17 +40,15 @@ export class ShortcutsFileUtil {
             if (keys && keys.some((el) => !KeyComparatorUtil.isValidKey(el))) {
                 continue;
             }
-            parsedActions.push({ actionType, content, keys });
+            parsedActions.push({ actionType, content, keys } as Action);
         }
         return parsedActions;
     }
 
-    private static parseTrigger(
-        triggerOnFile: { keyId: string; clickType: string }[],
-    ): Shortcut["trigger"] {
+    private static parseTrigger(triggerOnFile: Key<string>[]): Shortcut["trigger"] {
         const parsedTrigger: Shortcut["trigger"] = [];
         for (const trigger of triggerOnFile) {
-            if (!KeyComparatorUtil.isValidKey(trigger as Key)) {
+            if (!KeyComparatorUtil.isValidKey(trigger)) {
                 continue;
             }
             const { clickType, keyId } = trigger;
@@ -57,7 +57,7 @@ export class ShortcutsFileUtil {
                 parsedTrigger.push({ clickType: "up", keyId });
                 continue;
             }
-            parsedTrigger.push({ clickType, keyId } as Key);
+            parsedTrigger.push({ clickType, keyId } as TriggerKey);
         }
         return parsedTrigger;
     }

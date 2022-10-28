@@ -1,5 +1,7 @@
+import { TriggerKey } from "./shortcut";
+
 export interface Keylogger {
-    on: (eventName: "up" | "down", listener: (args: KeyEvent) => void) => this;
+    on: (eventName: TriggerKey["clickType"], listener: (args: KeyEvent) => void) => this;
 }
 
 export interface KeyEvent {
@@ -7,6 +9,6 @@ export interface KeyEvent {
     timeMS: number;
     keyCode: number;
     keyId: string;
-    clickType: "up" | "down";
+    clickType: TriggerKey["clickType"];
     device: string;
 }

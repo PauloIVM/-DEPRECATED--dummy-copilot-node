@@ -1,12 +1,12 @@
+import { Action, Shortcut, TriggerKey } from "../../types/shortcut";
+import { KeyEvent, Keylogger } from "../../types/keylogger";
 import { KeyComparatorUtil } from "../../utils/key-comparator";
-import { Shortcut, Action, Key } from "../../types/shortcut";
-import { Keylogger, KeyEvent } from "../../types/keylogger";
 import robot from "robotjs";
 
 export default class ShortcutsManager {
-    private shortcuts: Shortcut[];
-    private keylogger: Keylogger;
-    private keysClickedQueue: Key[] = [];
+    private readonly shortcuts: Shortcut[];
+    private readonly keylogger: Keylogger;
+    private keysClickedQueue: TriggerKey[] = [];
 
     constructor(
         shortcuts: ShortcutsManager["shortcuts"],
@@ -16,7 +16,7 @@ export default class ShortcutsManager {
         this.shortcuts = shortcuts;
     }
 
-    startShortcutListener() {
+    startShortcutListener(): void {
         this.keylogger.on("up", this.onClickKey.bind(this));
         this.keylogger.on("down", this.onClickKey.bind(this));
     }
@@ -24,9 +24,8 @@ export default class ShortcutsManager {
     private onClickKey({ keyId, clickType }: KeyEvent) {
         this.keysClickedQueue.push({ keyId, clickType });
 
-        // TODO: Criar parser e validador do arquivo de entrada:
         const shortcut = this.shortcuts.find((cmd) => {
-            return KeyComparatorUtil.contains(cmd.trigger as Key[], this.keysClickedQueue);
+            return KeyComparatorUtil.contains(cmd.trigger, this.keysClickedQueue);
         }) as Shortcut;
 
         if (!shortcut) {
@@ -42,9 +41,10 @@ export default class ShortcutsManager {
 
     private execActions(actions: Shortcut["actions"]) {
         const actionTypeMethods = {
-            "sequence": this.execSequenceAction,
-            "paste": this.execPasteAction,
-        }
+            sequence: this.execSequenceAction,
+            paste: this.execPasteAction,
+        };
+
         for (const action of actions) {
             actionTypeMethods[action.actionType](action);
         }
@@ -55,11 +55,19 @@ export default class ShortcutsManager {
             return;
         }
         const clickTypeMethods = {
-            "tap": (value: string) => { robot.keyTap(value) },
-            "down": (value: string) => { robot.keyToggle(value, "down") },
-            "up": (value: string) => { robot.keyToggle(value, "up") },
-        }
-        action.keys.forEach(({ keyId, clickType }) => { clickTypeMethods[clickType](keyId) });
+            tap: (value: string) => {
+                robot.keyTap(value);
+            },
+            down: (value: string) => {
+                robot.keyToggle(value, "down");
+            },
+            up: (value: string) => {
+                robot.keyToggle(value, "up");
+            },
+        };
+        action.keys.forEach(({ keyId, clickType }) => {
+            clickTypeMethods[clickType](keyId);
+        });
     }
 
     private execPasteAction(action: Action) {

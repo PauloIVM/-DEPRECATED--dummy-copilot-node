@@ -3,19 +3,21 @@ import shortcutsFile from "./../../shortcuts.config.json";
 export type ShortcutsFile = typeof shortcutsFile;
 
 export interface Shortcut {
-    // TODO: O trigger é só "down" | "up"... preciso implementar um parser do JSON que
-    // converta o "tap".
-    trigger: Key[];
+    trigger: TriggerKey[];
     actions: Action[];
 }
 
 export interface Action {
     actionType: "sequence" | "paste";
     content?: string;
-    keys?: Key[];
+    keys?: ActionKey[];
 }
 
-export interface Key {
+export interface Key<T extends string> {
     keyId: string;
-    clickType: "down" | "up" | "tap";
+    clickType: T;
 }
+
+export type ActionKey = Key<"down" | "up" | "tap">;
+
+export type TriggerKey = Key<"down" | "up">;

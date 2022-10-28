@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+import { KeyEvent, Keylogger } from "../../types/keylogger";
+import { EventEmitter } from "events";
 import fs from "fs";
 import toKey from "./keycodes";
-import { Keylogger, KeyEvent } from "../../types/keylogger";
-import { EventEmitter } from "events";
 
 const EVENT_TYPES = ["up", "down", "hold"];
 const EV_KEY = 1;

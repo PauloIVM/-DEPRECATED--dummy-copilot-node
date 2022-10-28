@@ -24,8 +24,8 @@ export default class ShortcutsManager {
     private onClickKey({ keyId, clickType }: KeyEvent) {
         this.keysClickedQueue.push({ keyId, clickType });
 
-        const shortcut = this.shortcuts.find((cmd) => {
-            return KeyComparatorUtil.contains(cmd.trigger, this.keysClickedQueue);
+        const shortcut = this.shortcuts.find((element) => {
+            return KeyComparatorUtil.contains(element.trigger, this.keysClickedQueue);
         }) as Shortcut;
 
         if (!shortcut) {

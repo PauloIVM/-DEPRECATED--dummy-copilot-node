@@ -1,4 +1,4 @@
-import { Action, Key, Shortcut, ShortcutsFile, TriggerKey } from "../types/shortcut";
+import { Action, Shortcut, ShortcutsFile, TriggerKey } from "../types/shortcut";
 import { KeyComparatorUtil } from "./key-comparator";
 
 export class ShortcutsFileUtil {
@@ -45,7 +45,9 @@ export class ShortcutsFileUtil {
         return parsedActions;
     }
 
-    private static parseTrigger(triggerOnFile: Key<string>[]): Shortcut["trigger"] {
+    private static parseTrigger(
+        triggerOnFile: ShortcutsFile["shortcuts"][0]["trigger"],
+    ): Shortcut["trigger"] {
         const parsedTrigger: Shortcut["trigger"] = [];
         for (const trigger of triggerOnFile) {
             if (!KeyComparatorUtil.isValidKey(trigger)) {

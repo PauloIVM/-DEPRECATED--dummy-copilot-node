@@ -126,7 +126,7 @@
           "complexity": [
             "error",
             {
-              "max": 5
+              "max": 6
             }
           ],
           "constructor-super": "error",

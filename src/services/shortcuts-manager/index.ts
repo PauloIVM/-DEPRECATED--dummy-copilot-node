@@ -21,6 +21,10 @@ export default class ShortcutsManager {
         this.keylogger.on("down", this.onClickKey.bind(this));
     }
 
+    setDelay(delayBetweenClicks: number): void {
+        robot.setKeyboardDelay(delayBetweenClicks);
+    }
+
     private onClickKey({ keyId, clickType }: KeyEvent) {
         this.keysClickedQueue.push({ keyId, clickType });
 

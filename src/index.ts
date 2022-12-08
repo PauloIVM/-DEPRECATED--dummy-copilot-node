@@ -6,7 +6,7 @@ import shortcutsFile from "../shortcuts.config.json";
 (function () {
     const shortcutsManager = new ShortcutsManager(
         ShortcutsFileUtil.parse(shortcutsFile),
-        new Keyboard("event3")
+        new Keyboard("event3"),
     );
     shortcutsManager.startShortcutListener();
 })();

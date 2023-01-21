@@ -107,6 +107,10 @@
                         {
                             "keyId": "backspace",
                             "clickType": "tap"
+                        },
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
                         }
                     ]
                 },

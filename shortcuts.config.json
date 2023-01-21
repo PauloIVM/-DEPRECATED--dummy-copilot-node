@@ -4,34 +4,76 @@
         {
             "trigger": [
                 {
-                    "keyId": "shift",
+                    "keyId": ".",
                     "clickType": "down"
                 },
                 {
-                    "keyId": "c",
-                    "clickType": "down"
-                }
-            ],
-            "actions": [
+                    "keyId": ".",
+                    "clickType": "up"
+                },
                 {
-                    "actionType": "paste",
-                    "content": "ola :)"
-                }
-            ]
-        },
-        {
-            "trigger": [
-                {
-                    "keyId": "shift",
+                    "keyId": "g",
                     "clickType": "down"
                 },
                 {
-                    "keyId": "a",
+                    "keyId": "g",
+                    "clickType": "up"
+                },
+                {
+                    "keyId": "i",
                     "clickType": "down"
                 },
                 {
-                    "keyId": "z",
+                    "keyId": "i",
+                    "clickType": "up"
+                },
+                {
+                    "keyId": "t",
                     "clickType": "down"
+                },
+                {
+                    "keyId": "t",
+                    "clickType": "up"
+                },
+                {
+                    "keyId": "p",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "p",
+                    "clickType": "up"
+                },
+                {
+                    "keyId": "u",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "u",
+                    "clickType": "up"
+                },
+                {
+                    "keyId": "s",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "s",
+                    "clickType": "up"
+                },
+                {
+                    "keyId": "h",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "h",
+                    "clickType": "up"
+                },
+                {
+                    "keyId": "control",
+                    "clickType": "down"
+                },
+                {
+                    "keyId": "control",
+                    "clickType": "up"
                 }
             ],
             "actions": [
@@ -45,12 +87,32 @@
                         {
                             "keyId": "backspace",
                             "clickType": "tap"
+                        },
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
+                        },
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
+                        },
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
+                        },
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
+                        },
+                        {
+                            "keyId": "backspace",
+                            "clickType": "tap"
                         }
                     ]
                 },
                 {
                     "actionType": "paste",
-                    "content": "foo \n bar"
+                    "content": "git push --set-upstream origin "
                 },
                 {
                     "actionType": "sequence",
@@ -60,7 +122,7 @@
                             "clickType": "down"
                         },
                         {
-                            "keyId": "left",
+                            "keyId": "4",
                             "clickType": "tap"
                         },
                         {
@@ -68,6 +130,10 @@
                             "clickType": "up"
                         }
                     ]
+                },
+                {
+                    "actionType": "paste",
+                    "content": "(git rev-parse --abbrev-ref HEAD)"
                 }
             ]
         }

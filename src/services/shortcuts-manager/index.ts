@@ -16,9 +16,12 @@ export default class ShortcutsManager {
         this.shortcuts = shortcuts;
     }
 
-    startShortcutListener(): void {
-        this.keylogger.on("up", this.onClickKey.bind(this));
-        this.keylogger.on("down", this.onClickKey.bind(this));
+    startShortcutListener(
+        onClickUpKey?: (_: KeyEvent) => void,
+        onClickDownKey?: (_: KeyEvent) => void,
+    ): void {
+        this.keylogger.on("up", onClickUpKey || this.onClickKey.bind(this));
+        this.keylogger.on("down", onClickDownKey || this.onClickKey.bind(this));
     }
 
     setDelay(delayBetweenClicks: number): void {

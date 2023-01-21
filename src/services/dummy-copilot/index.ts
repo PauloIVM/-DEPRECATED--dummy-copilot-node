@@ -64,6 +64,8 @@ export default class DummyCopilot {
         }
     }
 
+    // TODO: Instead have 'execClipboardCopyPasteAction' and 'execPasteAction', update 'execPasteAction'
+    // to use clipboard and after return the previous value to clipboard
     private execClipboardCopyPasteAction(action: Action) {
         if (!action?.content) {
             return;

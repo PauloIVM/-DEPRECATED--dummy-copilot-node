@@ -20,10 +20,13 @@ export default class DummyCopilot {
         this.keylogger.on("down", onClickDownKey);
     }
 
-    startShortcutListener(shortcuts: DummyCopilot["shortcuts"]): void {
-        this.shortcuts = shortcuts;
+    startShortcutListener(): void {
         this.keylogger.on("up", this.onClickKey.bind(this));
         this.keylogger.on("down", this.onClickKey.bind(this));
+    }
+
+    setShortcutsFile(shortcuts: DummyCopilot["shortcuts"]): void {
+        this.shortcuts = shortcuts;
     }
 
     setDelay(delayBetweenClicks: number): void {

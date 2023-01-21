@@ -5,5 +5,6 @@ import shortcutsFile from "../shortcuts.config.json";
 
 (function () {
     const dummyCopilot = new DummyCopilot(new Keyboard("event3"));
-    dummyCopilot.startShortcutListener(ShortcutsFileUtil.parse(shortcutsFile));
+    dummyCopilot.setShortcutsFile(ShortcutsFileUtil.parse(shortcutsFile));
+    dummyCopilot.startShortcutListener();
 })();

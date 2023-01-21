@@ -8,7 +8,7 @@ export interface Shortcut {
 }
 
 export interface Action {
-    actionType: "sequence" | "paste";
+    actionType: "sequence" | "paste" | "copyPasteClipboard";
     content?: string;
     keys?: ActionKey[];
 }

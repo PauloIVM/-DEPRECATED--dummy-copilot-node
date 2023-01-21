@@ -1,6 +1,7 @@
 import { Action, Shortcut, TriggerKey } from "../../types/shortcut";
 import { KeyEvent, Keylogger } from "../../types/keylogger";
 import { KeyComparatorUtil } from "../../utils/key-comparator";
+import clipboard from "copy-paste";
 import robot from "robotjs";
 
 export default class DummyCopilot {
@@ -55,11 +56,24 @@ export default class DummyCopilot {
         const actionTypeMethods = {
             sequence: this.execSequenceAction,
             paste: this.execPasteAction,
+            copyPasteClipboard: this.execClipboardCopyPasteAction,
         };
 
         for (const action of actions) {
             actionTypeMethods[action.actionType](action);
         }
+    }
+
+    private execClipboardCopyPasteAction(action: Action) {
+        if (!action?.content) {
+            return;
+        }
+        clipboard.copy(action.content, function () {
+            robot.keyToggle("control", "down");
+            robot.keyToggle("v", "down");
+            robot.keyToggle("control", "up");
+            robot.keyToggle("v", "up");
+        });
     }
 
     private execSequenceAction(action: Action) {

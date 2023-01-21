@@ -1,9 +1,9 @@
+import DummyCopilot from "./services/dummy-copilot";
 import { KeyEvent } from "./types/keylogger";
 import Keyboard from "./lib/keylogger";
-import ShortcutsManager from "./services/shortcuts-manager";
 
 (function () {
-    const shortcutsManager = new ShortcutsManager(new Keyboard("event3"));
+    const dummyCopilot = new DummyCopilot(new Keyboard("event3"));
     let trigger = [];
     console.log("TYPE YOUR TRIGGER AND AFTER TYPE 'ESCAPE' TO FINISH:");
     const onClick = (keyEvent: KeyEvent) => {
@@ -21,5 +21,5 @@ import ShortcutsManager from "./services/shortcuts-manager";
             clickType: keyEvent.clickType,
         });
     };
-    shortcutsManager.startKeyloggerListener(onClick, onClick);
+    dummyCopilot.startKeyListener(onClick, onClick);
 })();

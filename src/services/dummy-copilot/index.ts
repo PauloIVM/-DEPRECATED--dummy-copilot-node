@@ -3,16 +3,16 @@ import { KeyEvent, Keylogger } from "../../types/keylogger";
 import { KeyComparatorUtil } from "../../utils/key-comparator";
 import robot from "robotjs";
 
-export default class ShortcutsManager {
+export default class DummyCopilot {
     private shortcuts: Shortcut[];
     private readonly keylogger: Keylogger;
     private keysClickedQueue: TriggerKey[] = [];
 
-    constructor(keylogger: ShortcutsManager["keylogger"]) {
+    constructor(keylogger: DummyCopilot["keylogger"]) {
         this.keylogger = keylogger;
     }
 
-    startKeyloggerListener(
+    startKeyListener(
         onClickUpKey?: (_: KeyEvent) => void,
         onClickDownKey?: (_: KeyEvent) => void,
     ): void {
@@ -20,7 +20,7 @@ export default class ShortcutsManager {
         this.keylogger.on("down", onClickDownKey);
     }
 
-    startShortcutListener(shortcuts: ShortcutsManager["shortcuts"]): void {
+    startShortcutListener(shortcuts: DummyCopilot["shortcuts"]): void {
         this.shortcuts = shortcuts;
         this.keylogger.on("up", this.onClickKey.bind(this));
         this.keylogger.on("down", this.onClickKey.bind(this));

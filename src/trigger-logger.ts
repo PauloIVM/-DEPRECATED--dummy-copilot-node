@@ -1,15 +1,9 @@
 import { KeyEvent } from "./types/keylogger";
 import Keyboard from "./lib/keylogger";
-import { ShortcutsFileUtil } from "./utils/shortcuts-file-parser";
 import ShortcutsManager from "./services/shortcuts-manager";
-import shortcutsFile from "../shortcuts.config.json";
 
 (function () {
-    const shortcutsManager = new ShortcutsManager(
-        // TODO: Desacoplar para eu conseguir usar isso sem ter que passar esse file.
-        ShortcutsFileUtil.parse(shortcutsFile),
-        new Keyboard("event3"),
-    );
+    const shortcutsManager = new ShortcutsManager(new Keyboard("event3"));
     let trigger = [];
     console.log("TYPE YOUR TRIGGER AND AFTER TYPE 'ESCAPE' TO FINISH:");
     const onClick = (keyEvent: KeyEvent) => {
@@ -27,5 +21,5 @@ import shortcutsFile from "../shortcuts.config.json";
             clickType: keyEvent.clickType,
         });
     };
-    shortcutsManager.startShortcutListener(onClick, onClick);
+    shortcutsManager.startKeyloggerListener(onClick, onClick);
 })();

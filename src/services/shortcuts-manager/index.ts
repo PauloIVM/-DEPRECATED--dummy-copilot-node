@@ -4,24 +4,26 @@ import { KeyComparatorUtil } from "../../utils/key-comparator";
 import robot from "robotjs";
 
 export default class ShortcutsManager {
-    private readonly shortcuts: Shortcut[];
+    private shortcuts: Shortcut[];
     private readonly keylogger: Keylogger;
     private keysClickedQueue: TriggerKey[] = [];
 
-    constructor(
-        shortcuts: ShortcutsManager["shortcuts"],
-        keylogger: ShortcutsManager["keylogger"],
-    ) {
+    constructor(keylogger: ShortcutsManager["keylogger"]) {
         this.keylogger = keylogger;
-        this.shortcuts = shortcuts;
     }
 
-    startShortcutListener(
+    startKeyloggerListener(
         onClickUpKey?: (_: KeyEvent) => void,
         onClickDownKey?: (_: KeyEvent) => void,
     ): void {
-        this.keylogger.on("up", onClickUpKey || this.onClickKey.bind(this));
-        this.keylogger.on("down", onClickDownKey || this.onClickKey.bind(this));
+        this.keylogger.on("up", onClickUpKey);
+        this.keylogger.on("down", onClickDownKey);
+    }
+
+    startShortcutListener(shortcuts: ShortcutsManager["shortcuts"]): void {
+        this.shortcuts = shortcuts;
+        this.keylogger.on("up", this.onClickKey.bind(this));
+        this.keylogger.on("down", this.onClickKey.bind(this));
     }
 
     setDelay(delayBetweenClicks: number): void {

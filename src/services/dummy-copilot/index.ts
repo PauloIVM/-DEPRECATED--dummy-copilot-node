@@ -1,16 +1,18 @@
-import { Action, Shortcut, TriggerKey } from "../../types/shortcut";
 import { KeyEvent, Keylogger } from "../../types/keylogger";
+import { Shortcut, TriggerKey } from "../../types/shortcut";
+import ActionsExecutor from "./actions-executor";
 import { KeyComparatorUtil } from "../../utils/key-comparator";
-import clipboard from "copy-paste";
-import robot from "robotjs";
+import { actionsMethods } from "./actions-methods";
 
 export default class DummyCopilot {
     private shortcuts: Shortcut[];
     private readonly keylogger: Keylogger;
     private keysClickedQueue: TriggerKey[] = [];
+    private readonly actionsExecutor: ActionsExecutor;
 
     constructor(keylogger: DummyCopilot["keylogger"]) {
         this.keylogger = keylogger;
+        this.actionsExecutor = new ActionsExecutor(actionsMethods);
     }
 
     startKeyListener(
@@ -30,9 +32,10 @@ export default class DummyCopilot {
         this.shortcuts = shortcuts;
     }
 
-    setDelay(delayBetweenClicks: number): void {
-        robot.setKeyboardDelay(delayBetweenClicks);
-    }
+    // TODO: Handle this properly. Should be on actions-executor?
+    // setDelay(delayBetweenClicks: number): void {
+    //     robot.setKeyboardDelay(delayBetweenClicks);
+    // }
 
     private onClickKey({ keyId, clickType }: KeyEvent) {
         this.keysClickedQueue.push({ keyId, clickType });
@@ -47,61 +50,8 @@ export default class DummyCopilot {
         }
 
         if (KeyComparatorUtil.hasSameLength(shortcut.trigger, this.keysClickedQueue)) {
-            this.execActions(shortcut.actions);
+            this.actionsExecutor.execActions(shortcut.actions);
             this.keysClickedQueue = [];
         }
-    }
-
-    private execActions(actions: Shortcut["actions"]) {
-        const actionTypeMethods = {
-            sequence: this.execSequenceAction,
-            paste: this.execPasteAction,
-            copyPasteClipboard: this.execClipboardCopyPasteAction,
-        };
-
-        for (const action of actions) {
-            actionTypeMethods[action.actionType](action);
-        }
-    }
-
-    // TODO: Instead have 'execClipboardCopyPasteAction' and 'execPasteAction', update 'execPasteAction'
-    // to use clipboard and after return the previous value to clipboard
-    private execClipboardCopyPasteAction(action: Action) {
-        if (!action?.content) {
-            return;
-        }
-        clipboard.copy(action.content, function () {
-            robot.keyToggle("control", "down");
-            robot.keyToggle("v", "down");
-            robot.keyToggle("control", "up");
-            robot.keyToggle("v", "up");
-        });
-    }
-
-    private execSequenceAction(action: Action) {
-        if (!action?.keys) {
-            return;
-        }
-        const clickTypeMethods = {
-            tap: (value: string) => {
-                robot.keyTap(value);
-            },
-            down: (value: string) => {
-                robot.keyToggle(value, "down");
-            },
-            up: (value: string) => {
-                robot.keyToggle(value, "up");
-            },
-        };
-        action.keys.forEach(({ keyId, clickType }) => {
-            clickTypeMethods[clickType](keyId);
-        });
-    }
-
-    private execPasteAction(action: Action) {
-        if (!action?.content) {
-            return;
-        }
-        robot.typeString(action.content);
     }
 }

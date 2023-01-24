@@ -3,115 +3,37 @@
     "shortcuts": [
         {
             "trigger": [
-                {
-                    "keyId": ".",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": ".",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "g",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "g",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "i",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "i",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "t",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "t",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "p",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "p",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "u",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "u",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "s",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "s",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "h",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "h",
-                    "clickType": "up"
-                },
-                {
-                    "keyId": "control",
-                    "clickType": "down"
-                },
-                {
-                    "keyId": "control",
-                    "clickType": "up"
-                }
+                { "keyId": ".", "clickType": "down" },
+                { "keyId": ".", "clickType": "up" },
+                { "keyId": "g", "clickType": "down" },
+                { "keyId": "g", "clickType": "up" },
+                { "keyId": "i", "clickType": "down" },
+                { "keyId": "i", "clickType": "up" },
+                { "keyId": "t", "clickType": "down" },
+                { "keyId": "t", "clickType": "up" },
+                { "keyId": "p", "clickType": "down" },
+                { "keyId": "p", "clickType": "up" },
+                { "keyId": "u", "clickType": "down" },
+                { "keyId": "u", "clickType": "up" },
+                { "keyId": "s", "clickType": "down" },
+                { "keyId": "s", "clickType": "up" },
+                { "keyId": "h", "clickType": "down" },
+                { "keyId": "h", "clickType": "up" },
+                { "keyId": "control", "clickType": "down" },
+                { "keyId": "control", "clickType": "up" }
             ],
             "actions": [
                 {
                     "actionType": "sequence",
                     "keys": [
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "backspace",
-                            "clickType": "tap"
-                        }
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" }
                     ]
                 },
                 {
@@ -119,7 +41,60 @@
                     "content": "git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
                 }
             ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "down" },
+                { "keyId": ".", "clickType": "up" },
+                { "keyId": "e", "clickType": "down" },
+                { "keyId": "e", "clickType": "up" },
+                { "keyId": "h", "clickType": "down" },
+                { "keyId": "h", "clickType": "up" },
+                { "keyId": "control", "clickType": "down" },
+                { "keyId": "control", "clickType": "up" }
+            ],
+            "actions": [
+                {
+                    "actionType": "sequence",
+                    "keys": [
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" }
+                    ]
+                },
+                {
+                    "actionType": "copyPasteClipboard",
+                    "content": "é"
+                }
+            ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "down" },
+                { "keyId": ".", "clickType": "up" },
+                { "keyId": "a", "clickType": "down" },
+                { "keyId": "a", "clickType": "up" },
+                { "keyId": "shift", "clickType": "down" },
+                { "keyId": "`", "clickType": "down" },
+                { "keyId": "`", "clickType": "up" },
+                { "keyId": "shift", "clickType": "up" },
+                { "keyId": "control", "clickType": "down" },
+                { "keyId": "control", "clickType": "up" }
+            ],
+            "actions": [
+                {
+                    "actionType": "sequence",
+                    "keys": [
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" },
+                        { "keyId": "backspace", "clickType": "tap" }
+                    ]
+                },
+                {
+                    "actionType": "copyPasteClipboard",
+                    "content": "ã"
+                }
+            ]
         }
     ]
 }
-git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)

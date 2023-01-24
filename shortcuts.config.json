@@ -115,31 +115,11 @@
                     ]
                 },
                 {
-                    "actionType": "paste",
-                    "content": "git push --set-upstream origin "
-                },
-                {
-                    "actionType": "sequence",
-                    "keys": [
-                        {
-                            "keyId": "shift",
-                            "clickType": "down"
-                        },
-                        {
-                            "keyId": "4",
-                            "clickType": "tap"
-                        },
-                        {
-                            "keyId": "shift",
-                            "clickType": "up"
-                        }
-                    ]
-                },
-                {
-                    "actionType": "paste",
-                    "content": "(git rev-parse --abbrev-ref HEAD)"
+                    "actionType": "copyPasteClipboard",
+                    "content": "git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
                 }
             ]
         }
     ]
 }
+git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)

@@ -11,12 +11,15 @@ export const actionsMethods = {
             return;
         }
 
-        clipboard.copy(action.content, function () {
+        const curr = clipboard.paste();
+        clipboard.copy(action.content, () => {
             robot.keyToggle("control", "down");
             robot.keyToggle("v", "down");
             robot.keyToggle("control", "up");
             robot.keyToggle("v", "up");
-            next();
+            clipboard.copy(curr, () => {
+                next();
+            });
         });
     },
 

@@ -1,5 +1,5 @@
 import DummyCopilot from "./services/dummy-copilot";
-import { IKeyEvent } from "./services/dummy-copilot/i-key-event";
+import { IKeyEvent } from "./services/dummy-copilot/interfaces/i-key-event";
 import Keyboard from "./lib/keylogger";
 
 (function () {

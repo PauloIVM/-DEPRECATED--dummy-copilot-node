@@ -1,8 +1,8 @@
 import ActionsExecutor from "./actions-executor";
-import { IKey } from "./i-key";
-import { IKeyEvent } from "./i-key-event";
-import { IKeylogger } from "./i-keylogger";
-import { IShortcut } from "./i-shortcut";
+import { IKey } from "./interfaces/i-key";
+import { IKeyEvent } from "./interfaces/i-key-event";
+import { IKeylogger } from "./interfaces/i-keylogger";
+import { IShortcut } from "./interfaces/i-shortcut";
 import { actionsMethods } from "./actions-methods";
 export default class DummyCopilot {
     private shortcuts: IShortcut[];

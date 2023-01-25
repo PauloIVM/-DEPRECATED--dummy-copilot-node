@@ -1,7 +1,7 @@
 import { Element } from "../../utils/utility-types";
-import { IAction } from "../../services/dummy-copilot/i-action";
-import { IKey } from "../../services/dummy-copilot/i-key";
-import { IShortcut } from "../../services/dummy-copilot/i-shortcut";
+import { IAction } from "../../services/dummy-copilot/interfaces/i-action";
+import { IKey } from "../../services/dummy-copilot/interfaces/i-key";
+import { IShortcut } from "../../services/dummy-copilot/interfaces/i-shortcut";
 
 export class Shortcut implements IShortcut {
     private trigger: IKey<"down" | "up">[] = [];

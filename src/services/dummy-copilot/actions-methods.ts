@@ -1,4 +1,4 @@
-import { IAction } from "./i-action";
+import { IAction } from "./interfaces/i-action";
 import clipboard from "copy-paste";
 import robot from "robotjs";
 

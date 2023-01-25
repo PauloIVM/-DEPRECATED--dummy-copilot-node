@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import { Element } from "../../utils/utility-types";
-import { IShortcut } from "../../services/dummy-copilot/i-shortcut";
-import { IShortcutsFile } from "./i-shortcuts-file";
+import { IShortcut } from "../../services/dummy-copilot/interfaces/i-shortcut";
+import { IShortcutsFile } from "./interfaces/i-shortcuts-file";
 import { Shortcut } from "./shortcut";
 import { join as joinPath } from "path";
 

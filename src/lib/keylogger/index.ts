@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { EventEmitter } from "events";
-import { IKeyEvent } from "../../services/dummy-copilot/i-key-event";
-import { IKeylogger } from "../../services/dummy-copilot/i-keylogger";
+import { IKeyEvent } from "../../services/dummy-copilot/interfaces/i-key-event";
+import { IKeylogger } from "../../services/dummy-copilot/interfaces/i-keylogger";
 import fs from "fs";
 import toKey from "./keycodes";
 

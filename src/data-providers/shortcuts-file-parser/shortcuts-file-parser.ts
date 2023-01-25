@@ -2,7 +2,6 @@ import * as fs from "fs";
 import { Element } from "../../utils/utility-types";
 import { IShortcut } from "../../services/dummy-copilot/i-shortcut";
 import { IShortcutsFile } from "./i-shortcuts-file";
-import { KeyComparatorUtil } from "../../utils/key-comparator";
 import { Shortcut } from "./shortcut";
 import { join as joinPath } from "path";
 
@@ -52,9 +51,6 @@ export class ShortcutsFileParser {
             if (!content && (!keys || !Array.isArray(keys) || !keys.length)) {
                 continue;
             }
-            if (keys && keys.some((el) => !KeyComparatorUtil.isValidKey(el))) {
-                continue;
-            }
             parsedActions.push({ actionType, content, keys });
         }
         return parsedActions;
@@ -65,7 +61,7 @@ export class ShortcutsFileParser {
     ): Shortcut["trigger"] {
         const parsedTrigger = [];
         for (const trigger of triggerOnFile) {
-            if (!KeyComparatorUtil.isValidKey(trigger)) {
+            if (!trigger) {
                 continue;
             }
             const { clickType, keyId } = trigger;

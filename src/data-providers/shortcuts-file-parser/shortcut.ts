@@ -2,7 +2,6 @@ import { Element } from "../../utils/utility-types";
 import { IAction } from "../../services/dummy-copilot/i-action";
 import { IKey } from "../../services/dummy-copilot/i-key";
 import { IShortcut } from "../../services/dummy-copilot/i-shortcut";
-import { KeyComparatorUtil } from "../../utils/key-comparator";
 
 export class Shortcut implements IShortcut {
     private trigger: IKey<"down" | "up">[] = [];
@@ -61,8 +60,23 @@ export class Shortcut implements IShortcut {
         return true;
     }
 
-    hasTrigger(keysQueue: IKey<string>[]): boolean {
-        return KeyComparatorUtil.contains(this.trigger, keysQueue);
+    hasTrigger(queueKeys: IKey<string>[]): boolean {
+        for (let index = 0; index < this.trigger.length; index++) {
+            const triggerKey = this.trigger[index];
+            const queueKey = queueKeys[index];
+            if (!triggerKey || !queueKey) {
+                continue;
+            }
+
+            if (!this.isSameKey(triggerKey, queueKey)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private isSameKey<T extends string>(keyA: IKey<T>, keyB: IKey<T>) {
+        return keyA.keyId === keyB.keyId && keyA.clickType === keyB.clickType;
     }
 
     private hasInvalidKeys<T extends string>(

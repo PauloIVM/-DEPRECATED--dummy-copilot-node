@@ -12,6 +12,7 @@ export interface IShortcutsFile {
             }[];
             content?: string;
             configs?: string;
+            repeat?: number;
         }[];
     }[];
 }

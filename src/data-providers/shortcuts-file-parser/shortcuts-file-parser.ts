@@ -44,14 +44,16 @@ export class ShortcutsFileParser {
     ): Shortcut["actions"] {
         const parsedActions = [];
         for (const action of actionsOnFile) {
-            const { actionType, content, keys, configs } = action;
+            const { actionType, content, keys, configs, repeat = 1 } = action;
             if (!actionType) {
                 continue;
             }
             if (!content && (!keys || !Array.isArray(keys) || !keys.length)) {
                 continue;
             }
-            parsedActions.push({ actionType, content, keys, configs });
+            for (let index = 0; index < repeat; index++) {
+                parsedActions.push({ actionType, content, keys, configs });
+            }
         }
         return parsedActions;
     }

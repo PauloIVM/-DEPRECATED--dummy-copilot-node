@@ -25,16 +25,8 @@
             "actions": [
                 {
                     "actionType": "sequence",
-                    "keys": [
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" }
-                    ]
+                    "repeat": 8,
+                    "keys": [{ "keyId": "backspace", "clickType": "tap" }]
                 },
                 {
                     "actionType": "paste",
@@ -56,11 +48,8 @@
             "actions": [
                 {
                     "actionType": "sequence",
-                    "keys": [
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" }
-                    ]
+                    "repeat": 3,
+                    "keys": [{ "keyId": "backspace", "clickType": "tap" }]
                 },
                 {
                     "actionType": "paste",
@@ -84,11 +73,8 @@
             "actions": [
                 {
                     "actionType": "sequence",
-                    "keys": [
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" },
-                        { "keyId": "backspace", "clickType": "tap" }
-                    ]
+                    "repeat": 3,
+                    "keys": [{ "keyId": "backspace", "clickType": "tap" }]
                 },
                 {
                     "actionType": "paste",

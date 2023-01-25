@@ -70,6 +70,10 @@
                     "configs": {
                         "enum": ["clipboard", "robot"],
                         "description": "Specify how the dummy-copilot will paste data. It's recommended use 'clipboard' because the 'robot' don't work with special chars, emojis and etc."
+                    },
+                    "repeat": {
+                        "type": "number",
+                        "description": "Specify how many times this actions should work."
                     }
                 }
             }

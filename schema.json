@@ -64,8 +64,12 @@
                         }
                     },
                     "actionType": {
-                        "enum": ["paste", "sequence", "copyPasteClipboard"],
-                        "description": "Inform the type of action:\n - 'paste': use this by passing a simple string value in the 'content' field, that value will be pasted by this action.\n - 'sequence': use this by passing an array of keys in the 'keys' field, that value will click each key passed.\n - 'copyPasteClipboard': use this by passing a simple string value in the 'content' field, that value will be pasted using the clipboard."
+                        "enum": ["paste", "sequence"],
+                        "description": "Inform the type of action:\n - 'paste': use this by passing a simple string value in the 'content' field, that value will be pasted by this action.\n - 'sequence': use this by passing an array of keys in the 'keys' field, that value will click each key passed."
+                    },
+                    "configs": {
+                        "enum": ["clipboard", "robot"],
+                        "description": "Specify how the dummy-copilot will paste data. It's recommended use 'clipboard' because the 'robot' don't work with special chars, emojis and etc."
                     }
                 }
             }

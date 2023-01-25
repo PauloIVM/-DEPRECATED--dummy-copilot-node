@@ -6,11 +6,7 @@ import { IShortcut } from "../../services/dummy-copilot/interfaces/i-shortcut";
 export class Shortcut implements IShortcut {
     private trigger: IKey<"down" | "up">[] = [];
     private actions: IAction[] = [];
-    private readonly validActionsTypes: IAction["actionType"][] = [
-        "sequence",
-        "paste",
-        "copyPasteClipboard",
-    ];
+    private readonly validActionsTypes: IAction["actionType"][] = ["sequence", "paste"];
     private readonly validActionsKeys: Element<IAction["keys"]>["clickType"][] = [
         "down",
         "up",

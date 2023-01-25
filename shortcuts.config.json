@@ -37,7 +37,7 @@
                     ]
                 },
                 {
-                    "actionType": "copyPasteClipboard",
+                    "actionType": "paste",
                     "content": "git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
                 }
             ]
@@ -63,7 +63,7 @@
                     ]
                 },
                 {
-                    "actionType": "copyPasteClipboard",
+                    "actionType": "paste",
                     "content": "é"
                 }
             ]
@@ -91,7 +91,7 @@
                     ]
                 },
                 {
-                    "actionType": "copyPasteClipboard",
+                    "actionType": "paste",
                     "content": "ã"
                 }
             ]

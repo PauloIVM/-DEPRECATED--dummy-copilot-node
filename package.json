@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/src/index.js",
-    "trigger-logger": "node build/src/trigger-logger.js",
+    "start": "node build/index.js",
+    "trigger-logger": "node build/trigger-logger.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . -c .eslintrc.json --no-eslintrc"

@@ -1,9 +1,9 @@
+import { PasteAction, SequenceAction } from "./actions-middlewares";
 import ActionsExecutor from "./actions-executor";
 import { IKey } from "./interfaces/i-key";
 import { IKeyEvent } from "./interfaces/i-key-event";
 import { IKeylogger } from "./interfaces/i-keylogger";
 import { IShortcut } from "./interfaces/i-shortcut";
-import { actionsMethods } from "./actions-methods";
 export default class DummyCopilot {
     private shortcuts: IShortcut[];
     private readonly keylogger: IKeylogger;
@@ -12,7 +12,7 @@ export default class DummyCopilot {
 
     constructor(keylogger: DummyCopilot["keylogger"]) {
         this.keylogger = keylogger;
-        this.actionsExecutor = new ActionsExecutor(actionsMethods);
+        this.actionsExecutor = new ActionsExecutor([new PasteAction(), new SequenceAction()]);
     }
 
     startKeyListener(

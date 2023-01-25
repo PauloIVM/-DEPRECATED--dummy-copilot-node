@@ -1,14 +1,15 @@
 import { IAction } from "./interfaces/i-action";
+import { IActionMiddleware } from "./interfaces/i-action-middleware";
 export default class ActionsExecutor {
-    private readonly actionMethodsMap: Record<
-        IAction["actionType"],
-        (action: IAction, next: () => void) => void
-    >;
+    private readonly actionMiddlewaresMap: Map<IAction["actionType"], IActionMiddleware>;
     private index = 0;
     private actions: IAction[];
 
-    constructor(actionMethodsMap: ActionsExecutor["actionMethodsMap"]) {
-        this.actionMethodsMap = actionMethodsMap;
+    constructor(middlewares: IActionMiddleware[]) {
+        this.actionMiddlewaresMap = new Map();
+        middlewares.forEach((actionMiddleware) => {
+            this.actionMiddlewaresMap.set(actionMiddleware.getName(), actionMiddleware);
+        });
     }
 
     execActions(actions: IAction[]): void {
@@ -25,6 +26,6 @@ export default class ActionsExecutor {
             return;
         }
         this.index = this.index + 1;
-        this.actionMethodsMap[action.actionType](action, this.next.bind(this));
+        this.actionMiddlewaresMap.get(action.actionType).exec(action, this.next.bind(this));
     }
 }

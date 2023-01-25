@@ -1,3 +1,17 @@
-import shortcutsFile from "../../../../shortcuts.config.json";
-
-export type IShortcutsFile = typeof shortcutsFile;
+export interface IShortcutsFile {
+    shortcuts: {
+        trigger: {
+            keyId: string;
+            clickType: string;
+        }[];
+        actions: {
+            actionType: string;
+            keys: {
+                keyId: string;
+                clickType: string;
+            }[];
+            content?: string;
+            configs?: string;
+        }[];
+    }[];
+}

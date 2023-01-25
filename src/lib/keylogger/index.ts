@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { KeyEvent, Keylogger } from "../../types/keylogger";
 import { EventEmitter } from "events";
+import { IKeyEvent } from "../../services/dummy-copilot/i-key-event";
+import { IKeylogger } from "../../services/dummy-copilot/i-keylogger";
 import fs from "fs";
 import toKey from "./keycodes";
 
 const EVENT_TYPES = ["up", "down", "hold"];
 const EV_KEY = 1;
 
-class Keyboard extends EventEmitter implements Keylogger {
+class Keyboard extends EventEmitter implements IKeylogger {
     private readonly device: string;
     private readonly data: fs.ReadStream;
 
@@ -37,13 +38,13 @@ class Keyboard extends EventEmitter implements Keylogger {
         });
     }
 
-    private parse(buffer: Buffer): Partial<KeyEvent> {
+    private parse(buffer: Buffer): Partial<IKeyEvent> {
         return {
             timeS: buffer.readUInt16LE(0),
             timeMS: buffer.readUInt16LE(8),
             keyCode: buffer.readUInt16LE(18),
             keyId: toKey[buffer.readUInt16LE(18)],
-            clickType: EVENT_TYPES[buffer.readUInt32LE(20)] as KeyEvent["clickType"],
+            clickType: EVENT_TYPES[buffer.readUInt32LE(20)] as IKeyEvent["clickType"],
             device: this.device,
         };
     }

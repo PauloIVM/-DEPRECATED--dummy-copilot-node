@@ -1,18 +1,17 @@
-import { Action } from "../../types/shortcut";
-
+import { IAction } from "./i-action";
 export default class ActionsExecutor {
     private readonly actionMethodsMap: Record<
-        Action["actionType"],
-        (action: Action, next: () => void) => void
+        IAction["actionType"],
+        (action: IAction, next: () => void) => void
     >;
     private index = 0;
-    private actions: Action[];
+    private actions: IAction[];
 
     constructor(actionMethodsMap: ActionsExecutor["actionMethodsMap"]) {
         this.actionMethodsMap = actionMethodsMap;
     }
 
-    execActions(actions: Action[]): void {
+    execActions(actions: IAction[]): void {
         this.actions = actions;
         this.index = 0;
         this.next();

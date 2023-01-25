@@ -1,10 +1,10 @@
-import { Action } from "../../types/shortcut";
+import { IAction } from "./i-action";
 import clipboard from "copy-paste";
 import robot from "robotjs";
 
 export const actionsMethods = {
     copyPasteClipboard: function execClipboardCopyPasteAction(
-        action: Action,
+        action: IAction,
         next: () => void,
     ): void {
         if (!action?.content) {
@@ -23,7 +23,7 @@ export const actionsMethods = {
         });
     },
 
-    sequence: function execSequenceAction(action: Action, next: () => void): void {
+    sequence: function execSequenceAction(action: IAction, next: () => void): void {
         if (!action?.keys) {
             return;
         }
@@ -44,7 +44,7 @@ export const actionsMethods = {
         next();
     },
 
-    paste: function execPasteAction(action: Action, next: () => void): void {
+    paste: function execPasteAction(action: IAction, next: () => void): void {
         if (!action?.content) {
             return;
         }

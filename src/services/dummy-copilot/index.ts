@@ -1,13 +1,13 @@
-import { KeyEvent, Keylogger } from "../../types/keylogger";
-import { Shortcut, TriggerKey } from "../../types/shortcut";
 import ActionsExecutor from "./actions-executor";
-import { KeyComparatorUtil } from "../../utils/key-comparator";
+import { IKey } from "./i-key";
+import { IKeyEvent } from "./i-key-event";
+import { IKeylogger } from "./i-keylogger";
+import { IShortcut } from "./i-shortcut";
 import { actionsMethods } from "./actions-methods";
-
 export default class DummyCopilot {
-    private shortcuts: Shortcut[];
-    private readonly keylogger: Keylogger;
-    private keysClickedQueue: TriggerKey[] = [];
+    private shortcuts: IShortcut[];
+    private readonly keylogger: IKeylogger;
+    private keysClickedQueue: IKey<"down" | "up">[] = [];
     private readonly actionsExecutor: ActionsExecutor;
 
     constructor(keylogger: DummyCopilot["keylogger"]) {
@@ -16,8 +16,8 @@ export default class DummyCopilot {
     }
 
     startKeyListener(
-        onClickUpKey?: (_: KeyEvent) => void,
-        onClickDownKey?: (_: KeyEvent) => void,
+        onClickUpKey?: (_: IKeyEvent) => void,
+        onClickDownKey?: (_: IKeyEvent) => void,
     ): void {
         this.keylogger.on("up", onClickUpKey);
         this.keylogger.on("down", onClickDownKey);
@@ -37,20 +37,20 @@ export default class DummyCopilot {
     //     robot.setKeyboardDelay(delayBetweenClicks);
     // }
 
-    private onClickKey({ keyId, clickType }: KeyEvent) {
+    private onClickKey({ keyId, clickType }: IKeyEvent) {
         this.keysClickedQueue.push({ keyId, clickType });
 
-        const shortcut = this.shortcuts.find((element) => {
-            return KeyComparatorUtil.contains(element.trigger, this.keysClickedQueue);
-        }) as Shortcut;
+        const shortcut = this.shortcuts.find((element) =>
+            element.hasTrigger(this.keysClickedQueue),
+        );
 
         if (!shortcut) {
             this.keysClickedQueue = [];
             return;
         }
 
-        if (KeyComparatorUtil.hasSameLength(shortcut.trigger, this.keysClickedQueue)) {
-            this.actionsExecutor.execActions(shortcut.actions);
+        if (shortcut.getTrigger()?.length === this.keysClickedQueue?.length) {
+            this.actionsExecutor.execActions(shortcut.getActions());
             this.keysClickedQueue = [];
         }
     }

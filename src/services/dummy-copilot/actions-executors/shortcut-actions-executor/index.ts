@@ -4,7 +4,7 @@ import { IActionMiddleware } from "../abstract-actions-executor/interfaces/i-act
 import { IActionsExecutor } from "../../interfaces/i-actions-executor";
 
 export default class ShortcutActionsExecutor extends ActionsExecutor implements IActionsExecutor {
-    actionMiddlewares: IActionMiddleware[];
+    protected actionMiddlewares: IActionMiddleware[];
 
     constructor() {
         super();

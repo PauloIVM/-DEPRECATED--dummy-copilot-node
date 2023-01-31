@@ -1,4 +1,4 @@
-import { IAction } from "../../../interfaces/i-action";
+import { IAction } from "./i-action";
 
 export interface IActionMiddleware {
     getName(): IAction["actionType"];

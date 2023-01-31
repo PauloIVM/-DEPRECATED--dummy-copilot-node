@@ -1,14 +1,13 @@
-import { IAction } from "../../interfaces/i-action";
+import { IAction } from "./interfaces/i-action";
 import { IActionMiddleware } from "./interfaces/i-action-middleware";
 
-export default abstract class AbstractActionsExecutor {
+export default class ActionsExecutor {
     private actionMiddlewaresMap: Map<IAction["actionType"], IActionMiddleware>;
     private index = 0;
     private actions: IAction[];
-    protected abstract actionMiddlewares: IActionMiddleware[];
 
-    constructor() {
-        this.setupActionMiddlewaresMap();
+    constructor(middlewares: IActionMiddleware[]) {
+        this.setupActionMiddlewaresMap(middlewares);
     }
 
     exec(actions: IAction[]): void {
@@ -17,9 +16,9 @@ export default abstract class AbstractActionsExecutor {
         this.next();
     }
 
-    private setupActionMiddlewaresMap() {
+    private setupActionMiddlewaresMap(middlewares: IActionMiddleware[]) {
         this.actionMiddlewaresMap = new Map();
-        this.actionMiddlewares.forEach((actionMiddleware) => {
+        middlewares.forEach((actionMiddleware) => {
             this.actionMiddlewaresMap.set(actionMiddleware.getName(), actionMiddleware);
         });
     }

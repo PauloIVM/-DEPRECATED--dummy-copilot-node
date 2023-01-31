@@ -1,5 +1,5 @@
-import { IAction } from "../../../interfaces/i-action";
-import { IActionMiddleware } from "../../abstract-actions-executor/interfaces/i-action-middleware";
+import { IAction } from "../interfaces/i-action";
+import { IActionMiddleware } from "../interfaces/i-action-middleware";
 import clipboard from "copy-paste";
 import robot from "robotjs";
 

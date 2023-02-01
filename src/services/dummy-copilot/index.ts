@@ -10,13 +10,13 @@ import { IShortcut } from "./interfaces/i-shortcut";
 
 export default class DummyCopilot {
     private shortcuts: IShortcut[];
-    private readonly keylogger: IKeylogger;
+    private readonly devices: IKeylogger[];
     private readonly context: IContext;
     private keysClickedQueue: IKey<"down" | "up">[] = [];
     private readonly actionsExecutor: IActionsExecutor;
 
-    constructor(keylogger: DummyCopilot["keylogger"]) {
-        this.keylogger = keylogger;
+    constructor(devices: DummyCopilot["devices"]) {
+        this.devices = devices;
         this.context = new Context();
         this.actionsExecutor = new ActionsExecutor([
             new ActionsMiddlewares.PasteAction(),
@@ -30,13 +30,17 @@ export default class DummyCopilot {
         onClickUpKey?: (_: IKeyEvent) => void,
         onClickDownKey?: (_: IKeyEvent) => void,
     ): void {
-        this.keylogger.on("up", onClickUpKey);
-        this.keylogger.on("down", onClickDownKey);
+        this.devices.forEach((keyboard) => {
+            keyboard.on("up", onClickUpKey);
+            keyboard.on("down", onClickDownKey);
+        });
     }
 
     startShortcutListener(): void {
-        this.keylogger.on("up", this.onClickKey.bind(this));
-        this.keylogger.on("down", this.onClickKey.bind(this));
+        this.devices.forEach((keyboard) => {
+            keyboard.on("up", this.onClickKey.bind(this));
+            keyboard.on("down", this.onClickKey.bind(this));
+        });
     }
 
     setShortcutsFile(shortcuts: DummyCopilot["shortcuts"]): void {

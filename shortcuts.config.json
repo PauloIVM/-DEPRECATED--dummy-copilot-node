@@ -23,15 +23,8 @@
                 { "keyId": "control", "clickType": "up" }
             ],
             "actions": [
-                {
-                    "actionType": "sequence",
-                    "repeat": 8,
-                    "keys": [{ "keyId": "backspace", "clickType": "tap" }]
-                },
-                {
-                    "actionType": "paste",
-                    "content": "git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
-                }
+                { "actionType": "sequence", "repeat": 8, "keys": [{ "keyId": "backspace", "clickType": "tap" }] },
+                { "actionType": "paste", "content": "git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)" }
             ]
         },
         {
@@ -46,15 +39,80 @@
                 { "keyId": "control", "clickType": "up" }
             ],
             "actions": [
-                {
-                    "actionType": "sequence",
-                    "repeat": 3,
-                    "keys": [{ "keyId": "backspace", "clickType": "tap" }]
-                },
-                {
-                    "actionType": "paste",
-                    "content": "é"
-                }
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] },
+                { "actionType": "paste", "content": "é" }
+            ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "tap" },
+                { "keyId": "r", "clickType": "tap" },
+                { "keyId": "0", "clickType": "tap" },
+                { "keyId": "control", "clickType": "tap" }
+            ],
+            "actions": [
+                { "actionType": "retrieve_clipboard", "clipIndex": 0 },
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] }
+            ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "tap" },
+                { "keyId": "r", "clickType": "tap" },
+                { "keyId": "1", "clickType": "tap" },
+                { "keyId": "control", "clickType": "tap" }
+            ],
+            "actions": [
+                { "actionType": "retrieve_clipboard", "clipIndex": 1 },
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] }
+            ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "tap" },
+                { "keyId": "r", "clickType": "tap" },
+                { "keyId": "2", "clickType": "tap" },
+                { "keyId": "control", "clickType": "tap" }
+            ],
+            "actions": [
+                { "actionType": "retrieve_clipboard", "clipIndex": 2 },
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] }
+            ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "tap" },
+                { "keyId": "f", "clickType": "tap" },
+                { "keyId": "0", "clickType": "tap" },
+                { "keyId": "control", "clickType": "tap" }
+            ],
+            "actions": [
+                { "actionType": "feed_clipboard", "clipIndex": 0 },
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] }
+            ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "tap" },
+                { "keyId": "f", "clickType": "tap" },
+                { "keyId": "1", "clickType": "tap" },
+                { "keyId": "control", "clickType": "tap" }
+            ],
+            "actions": [
+                { "actionType": "feed_clipboard", "clipIndex": 1 },
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] }
+            ]
+        },
+        {
+            "trigger": [
+                { "keyId": ".", "clickType": "tap" },
+                { "keyId": "f", "clickType": "tap" },
+                { "keyId": "2", "clickType": "tap" },
+                { "keyId": "control", "clickType": "tap" }
+            ],
+            "actions": [
+                { "actionType": "feed_clipboard", "clipIndex": 2 },
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] }
             ]
         },
         {
@@ -71,15 +129,8 @@
                 { "keyId": "control", "clickType": "up" }
             ],
             "actions": [
-                {
-                    "actionType": "sequence",
-                    "repeat": 3,
-                    "keys": [{ "keyId": "backspace", "clickType": "tap" }]
-                },
-                {
-                    "actionType": "paste",
-                    "content": "ã"
-                }
+                { "actionType": "sequence", "repeat": 3, "keys": [{ "keyId": "backspace", "clickType": "tap" }] },
+                { "actionType": "paste", "content": "ã" }
             ]
         }
     ]

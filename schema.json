@@ -64,8 +64,12 @@
                         }
                     },
                     "actionType": {
-                        "enum": ["paste", "sequence"],
+                        "enum": ["paste", "sequence", "retrieve_clipboard", "feed_clipboard"],
                         "description": "Inform the type of action:\n - 'paste': use this by passing a simple string value in the 'content' field, that value will be pasted by this action.\n - 'sequence': use this by passing an array of keys in the 'keys' field, that value will click each key passed."
+                    },
+                    "clipIndex": {
+                        "type": "number",
+                        "description": "Specify the index of retrieved clipboard content."
                     },
                     "configs": {
                         "enum": ["clipboard", "robot"],

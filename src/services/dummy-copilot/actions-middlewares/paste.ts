@@ -21,7 +21,16 @@ export class PasteAction implements IActionMiddleware {
             return;
         }
 
-        const curr = clipboard.paste();
+        let curr = "";
+        try {
+            curr = clipboard.paste();
+        } catch (error) {
+            // INFO: If this error persists, try implement a lib with 'xsel' instead 'xclip', see:
+            // https://github.com/neovim/neovim/issues/2642
+            console.error("ERROR ON PASTE CLIPBOARD");
+            console.error(error);
+            curr = "";
+        }
         clipboard.copy(action.content, () => {
             this.paste();
             clipboard.copy(curr, () => {

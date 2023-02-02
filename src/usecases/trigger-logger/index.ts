@@ -1,6 +1,7 @@
 import { IKeyEvent, IKeylistener, KeylistenersFactory } from "@services/keylistener";
+import { ITriggerLogger } from "./interfaces";
 
-export class TriggerLogger {
+export class TriggerLogger implements ITriggerLogger {
     private readonly keylisteners: IKeylistener[];
 
     constructor() {
@@ -18,4 +19,4 @@ export class TriggerLogger {
     }
 }
 
-export { IKeyEvent };
+export { IKeyEvent, ITriggerLogger };

@@ -7,7 +7,7 @@
     "clean": "shx rm -rf build",
     "start": "node build/index.js",
     "trigger-logger": "node build/trigger-logger.js",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . -c .eslintrc.json --no-eslintrc"
   },
@@ -36,7 +36,8 @@
     "eslint-plugin-compat": "^3.8.0",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2",
-    "typescript": "^4.0.3",
-    "shx": "^0.3.2"
+    "tsc-alias": "^1.8.2",
+    "shx": "^0.3.2",
+    "typescript": "^4.0.3"
   }
 }

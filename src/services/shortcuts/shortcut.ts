@@ -60,7 +60,7 @@ export class Shortcut implements IShortcut {
         return true;
     }
 
-    hasTrigger(queueKeys: CommonInterfaces.IKey<string>[]): boolean {
+    hasPartialTrigger(queueKeys: CommonInterfaces.IKey<string>[]): boolean {
         for (let index = 0; index < this.trigger.length; index++) {
             const triggerKey = this.trigger[index];
             const queueKey = queueKeys[index];

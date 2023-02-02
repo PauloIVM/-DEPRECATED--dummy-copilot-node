@@ -30,7 +30,7 @@ export class DummyCopilot implements IDummyCopilot {
         this.keysClickedQueue.push({ keyId, clickType });
 
         const shortcut = this.shortcuts.find((element) =>
-            element.hasTrigger(this.keysClickedQueue),
+            element.hasPartialTrigger(this.keysClickedQueue),
         );
 
         if (!shortcut) {

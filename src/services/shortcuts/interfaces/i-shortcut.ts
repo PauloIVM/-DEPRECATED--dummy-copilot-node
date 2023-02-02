@@ -6,5 +6,5 @@ export interface IShortcut {
     pushAction(action: IAction): boolean;
     setActions(action: IAction[]): boolean;
     setTrigger(trigger: IKey<"down" | "up">[]): boolean;
-    hasTrigger(keysQueue: IKey<string>[]): boolean;
+    hasPartialTrigger(keysQueue: IKey<string>[]): boolean;
 }

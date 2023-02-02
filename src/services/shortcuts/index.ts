@@ -1,28 +1,15 @@
-import * as fs from "fs";
+import { IShortcutsFile, ShortcutsFileFactory } from "@data-providers/shortcuts-file-parser";
 import { Element } from "@common/utils/utility-types";
-import { IShortcut } from "@services/dummy-copilot/interfaces";
-import { IShortcutsFile } from "./interfaces";
+import { IShortcut } from "./interfaces";
 import { Shortcut } from "./shortcut";
-import { join as joinPath } from "path";
 
-export class ShortcutsFileParser {
-    parse(): IShortcut[] {
-        try {
-            const rawFile = fs
-                .readFileSync(joinPath(process.cwd(), "shortcuts.config.json"))
-                .toString();
-            const file = JSON.parse(rawFile) as IShortcutsFile;
-            if (!file?.shortcuts || !file.shortcuts.length || !Array.isArray(file.shortcuts)) {
-                return;
-            }
-            return this.parseShortcuts(file.shortcuts);
-        } catch (error) {
-            // TODO: Validate and handle errors.
-            return [];
-        }
+export class ShortcutsFactory {
+    static create(): IShortcut[] {
+        const file = ShortcutsFileFactory.create();
+        return this.parseShortcuts(file.shortcuts);
     }
 
-    private parseShortcuts(shortcutsOnFile: IShortcutsFile["shortcuts"]): IShortcut[] {
+    private static parseShortcuts(shortcutsOnFile: IShortcutsFile["shortcuts"]): IShortcut[] {
         const parsedShortcuts: IShortcut[] = [];
         for (const shortcutOnFile of shortcutsOnFile) {
             const shortcut: IShortcut = new Shortcut();
@@ -39,7 +26,7 @@ export class ShortcutsFileParser {
     }
 
     // eslint-disable-next-line complexity
-    private parseActions(
+    private static parseActions(
         actionsOnFile: Element<IShortcutsFile["shortcuts"]>["actions"],
     ): Shortcut["actions"] {
         const parsedActions = [];
@@ -55,7 +42,7 @@ export class ShortcutsFileParser {
         return parsedActions;
     }
 
-    private parseTrigger(
+    private static parseTrigger(
         triggerOnFile: Element<IShortcutsFile["shortcuts"]>["trigger"],
     ): Shortcut["trigger"] {
         const parsedTrigger = [];
@@ -74,3 +61,5 @@ export class ShortcutsFileParser {
         return parsedTrigger;
     }
 }
+
+export { IShortcut };

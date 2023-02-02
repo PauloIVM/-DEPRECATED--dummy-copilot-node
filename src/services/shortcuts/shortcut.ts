@@ -1,6 +1,6 @@
 import * as CommonInterfaces from "@common/interfaces";
 import { Element } from "@common/utils/utility-types";
-import { IShortcut } from "@services/dummy-copilot/interfaces";
+import { IShortcut } from "./interfaces";
 
 export class Shortcut implements IShortcut {
     private trigger: CommonInterfaces.IKey<"down" | "up">[] = [];

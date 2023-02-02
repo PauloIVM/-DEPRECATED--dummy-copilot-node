@@ -1,1 +1,1 @@
-export { IShortcut } from "./i-shortcut";
+export { IDummyCopilot } from "./i-dummy-copilot";

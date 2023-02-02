@@ -1,41 +1,29 @@
 import { ActionsExecutorFactory, IActionsExecutor } from "@services/actions-executor";
 import { Context, IContext } from "@services/context";
-import { IKeyEvent, IKeylistener } from "@services/keylistener/interfaces";
+import { IKeyEvent, IKeylistener, KeylistenersFactory } from "@services/keylistener";
+import { IShortcut, ShortcutsFactory } from "@services/shortcuts";
+import { IDummyCopilot } from "./interfaces";
 import { IKey } from "@common/interfaces";
-import { IShortcut } from "./interfaces";
 
-export default class DummyCopilot {
-    private shortcuts: IShortcut[];
-    private readonly devices: IKeylistener[];
+export default class DummyCopilot implements IDummyCopilot {
+    private readonly shortcuts: IShortcut[];
+    private readonly keylisteners: IKeylistener[];
     private readonly context: IContext;
     private keysClickedQueue: IKey<"down" | "up">[] = [];
     private readonly actionsExecutor: IActionsExecutor;
 
-    constructor(devices: DummyCopilot["devices"]) {
-        this.devices = devices;
+    constructor() {
+        this.keylisteners = KeylistenersFactory.create(["event3", "event9"]);
         this.context = new Context();
+        this.shortcuts = ShortcutsFactory.create();
         this.actionsExecutor = ActionsExecutorFactory.create(this.context);
     }
 
-    startKeyListener(
-        onClickUpKey?: (_: IKeyEvent) => void,
-        onClickDownKey?: (_: IKeyEvent) => void,
-    ): void {
-        this.devices.forEach((keyboard) => {
-            keyboard.on("up", onClickUpKey);
-            keyboard.on("down", onClickDownKey);
-        });
-    }
-
     startShortcutListener(): void {
-        this.devices.forEach((keyboard) => {
-            keyboard.on("up", this.onClickKey.bind(this));
-            keyboard.on("down", this.onClickKey.bind(this));
+        this.keylisteners.forEach((keylistener) => {
+            keylistener.on("up", this.onClickKey.bind(this));
+            keylistener.on("down", this.onClickKey.bind(this));
         });
-    }
-
-    setShortcutsFile(shortcuts: DummyCopilot["shortcuts"]): void {
-        this.shortcuts = shortcuts;
     }
 
     private onClickKey({ keyId, clickType }: IKeyEvent) {
@@ -56,3 +44,5 @@ export default class DummyCopilot {
         }
     }
 }
+
+export { IDummyCopilot };

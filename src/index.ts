@@ -1,9 +1,6 @@
-import DummyCopilot from "./services/dummy-copilot";
-import Keyboard from "./lib/keylogger";
-import { ShortcutsFileParser } from "./data-providers/shortcuts-file-parser/shortcuts-file-parser";
+import DummyCopilot from "@usecases/dummy-copilot";
 
 (function () {
-    const dummyCopilot = new DummyCopilot([new Keyboard("event3"), new Keyboard("event21")]);
-    dummyCopilot.setShortcutsFile(new ShortcutsFileParser().parse());
+    const dummyCopilot = new DummyCopilot();
     dummyCopilot.startShortcutListener();
 })();

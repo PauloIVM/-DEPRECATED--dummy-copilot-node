@@ -1,9 +1,6 @@
-import DummyCopilot from "./services/dummy-copilot";
-import { IKeyEvent } from "@services/keylistener/interfaces";
-import { Keylistener } from "@services/keylistener";
+import { IKeyEvent, TriggerLogger } from "@usecases/trigger-logger";
 
 (function () {
-    const dummyCopilot = new DummyCopilot([new Keylistener("event21"), new Keylistener("event3")]);
     let trigger = [];
     console.log("TYPE YOUR TRIGGER AND AFTER TYPE 'ESCAPE' TO FINISH:");
     const onClick = (keyEvent: IKeyEvent) => {
@@ -21,5 +18,6 @@ import { Keylistener } from "@services/keylistener";
             clickType: keyEvent.clickType,
         });
     };
-    dummyCopilot.startKeyListener(onClick, onClick);
+    const triggerLogger = new TriggerLogger();
+    triggerLogger.startKeyListener(onClick, onClick);
 })();

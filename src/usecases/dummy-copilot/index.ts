@@ -5,7 +5,7 @@ import { IShortcut, ShortcutsFactory } from "@services/shortcuts";
 import { IDummyCopilot } from "./interfaces";
 import { IKey } from "@common/interfaces";
 
-export default class DummyCopilot implements IDummyCopilot {
+export class DummyCopilot implements IDummyCopilot {
     private readonly shortcuts: IShortcut[];
     private readonly keylisteners: IKeylistener[];
     private readonly context: IContext;

@@ -1,5 +1,5 @@
 import * as ActionsMiddlewares from "./actions-middlewares";
-import ActionsExecutor from "./actions-executor";
+import { ActionsExecutor } from "./actions-executor";
 import { IActionsExecutor } from "./interfaces";
 import { IContext } from "@services/context/interfaces";
 

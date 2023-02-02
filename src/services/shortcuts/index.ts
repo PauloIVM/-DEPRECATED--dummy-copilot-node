@@ -1,15 +1,16 @@
 import { IShortcutsFile, ShortcutsFileFactory } from "@data-providers/shortcuts-file-parser";
 import { Element } from "@common/utils/utility-types";
+import { IFactory } from "@common/interfaces";
 import { IShortcut } from "./interfaces";
 import { Shortcut } from "./shortcut";
 
-export class ShortcutsFactory {
-    static create(): IShortcut[] {
+export class ShortcutsFactory implements IFactory<void, IShortcut[]> {
+    create(): IShortcut[] {
         const file = ShortcutsFileFactory.create();
         return this.parseShortcuts(file.shortcuts);
     }
 
-    private static parseShortcuts(shortcutsOnFile: IShortcutsFile["shortcuts"]): IShortcut[] {
+    private parseShortcuts(shortcutsOnFile: IShortcutsFile["shortcuts"]): IShortcut[] {
         const parsedShortcuts: IShortcut[] = [];
         for (const shortcutOnFile of shortcutsOnFile) {
             const shortcut: IShortcut = new Shortcut();
@@ -26,7 +27,7 @@ export class ShortcutsFactory {
     }
 
     // eslint-disable-next-line complexity
-    private static parseActions(
+    private parseActions(
         actionsOnFile: Element<IShortcutsFile["shortcuts"]>["actions"],
     ): Shortcut["actions"] {
         const parsedActions = [];
@@ -42,7 +43,7 @@ export class ShortcutsFactory {
         return parsedActions;
     }
 
-    private static parseTrigger(
+    private parseTrigger(
         triggerOnFile: Element<IShortcutsFile["shortcuts"]>["trigger"],
     ): Shortcut["trigger"] {
         const parsedTrigger = [];

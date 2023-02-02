@@ -13,10 +13,10 @@ export class DummyCopilot implements IDummyCopilot {
     private readonly actionsExecutor: IActionsExecutor;
 
     constructor() {
-        this.keylisteners = KeylistenersFactory.create(["event3", "event9"]);
-        this.context = ContextFactory.create();
-        this.shortcuts = ShortcutsFactory.create();
-        this.actionsExecutor = ActionsExecutorFactory.create(this.context);
+        this.keylisteners = new KeylistenersFactory().create(["event3", "event9"]);
+        this.context = new ContextFactory().create();
+        this.shortcuts = new ShortcutsFactory().create();
+        this.actionsExecutor = new ActionsExecutorFactory().create(this.context);
     }
 
     startShortcutListener(): void {

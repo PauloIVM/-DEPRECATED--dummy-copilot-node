@@ -5,7 +5,7 @@ export class TriggerLogger implements ITriggerLogger {
     private readonly keylisteners: IKeylistener[];
 
     constructor() {
-        this.keylisteners = KeylistenersFactory.create(["event3", "event9"]);
+        this.keylisteners = new KeylistenersFactory().create(["event3", "event9"]);
     }
 
     startKeyListener(

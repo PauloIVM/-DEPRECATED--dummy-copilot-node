@@ -1,4 +1,4 @@
-import { ActionsExecutor, IActionsExecutor } from "@services/actions-executor";
+import { ActionsExecutorFactory, IActionsExecutor } from "@services/actions-executor";
 import { Context, IContext } from "@services/context";
 import { IKeyEvent, IKeylistener } from "@services/keylistener/interfaces";
 import { IKey } from "@common/interfaces";
@@ -14,7 +14,7 @@ export default class DummyCopilot {
     constructor(devices: DummyCopilot["devices"]) {
         this.devices = devices;
         this.context = new Context();
-        this.actionsExecutor = new ActionsExecutor(this.context);
+        this.actionsExecutor = ActionsExecutorFactory.create(this.context);
     }
 
     startKeyListener(

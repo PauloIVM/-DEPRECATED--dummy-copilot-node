@@ -1,5 +1,5 @@
 import { ActionsExecutorFactory, IActionsExecutor } from "@services/actions-executor";
-import { Context, IContext } from "@services/context";
+import { ContextFactory, IContext } from "@services/context";
 import { IKeyEvent, IKeylistener, KeylistenersFactory } from "@services/keylistener";
 import { IShortcut, ShortcutsFactory } from "@services/shortcuts";
 import { IDummyCopilot } from "./interfaces";
@@ -14,7 +14,7 @@ export class DummyCopilot implements IDummyCopilot {
 
     constructor() {
         this.keylisteners = KeylistenersFactory.create(["event3", "event9"]);
-        this.context = new Context();
+        this.context = ContextFactory.create();
         this.shortcuts = ShortcutsFactory.create();
         this.actionsExecutor = ActionsExecutorFactory.create(this.context);
     }

@@ -1,6 +1,6 @@
-import { IContext } from "./interfaces/i-context";
+import { IContext } from "./interfaces";
 
-export default class Context implements IContext {
+export class Context implements IContext {
     private readonly clipboardContents: string[];
     constructor() {
         this.clipboardContents = [];
@@ -19,3 +19,5 @@ export default class Context implements IContext {
         return true;
     }
 }
+
+export { IContext };

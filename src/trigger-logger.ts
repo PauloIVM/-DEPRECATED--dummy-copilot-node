@@ -1,9 +1,9 @@
 import DummyCopilot from "./services/dummy-copilot";
-import { IKeyEvent } from "./services/dummy-copilot/interfaces/i-key-event";
-import Keyboard from "./lib/keylogger";
+import { IKeyEvent } from "@services/keylistener/interfaces";
+import { Keylistener } from "@services/keylistener";
 
 (function () {
-    const dummyCopilot = new DummyCopilot([new Keyboard("event21"), new Keyboard("event3")]);
+    const dummyCopilot = new DummyCopilot([new Keylistener("event21"), new Keylistener("event3")]);
     let trigger = [];
     console.log("TYPE YOUR TRIGGER AND AFTER TYPE 'ESCAPE' TO FINISH:");
     const onClick = (keyEvent: IKeyEvent) => {

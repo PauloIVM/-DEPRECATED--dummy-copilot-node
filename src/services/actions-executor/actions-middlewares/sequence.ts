@@ -1,5 +1,5 @@
-import { IAction } from "../interfaces/i-action";
-import { IActionMiddleware } from "../interfaces/i-action-middleware";
+import { IAction } from "@common/interfaces";
+import { IActionMiddleware } from "../interfaces";
 import robot from "robotjs";
 
 export class SequenceAction implements IActionMiddleware {

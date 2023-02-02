@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+import { IKeyEvent, IKeylistener } from "./interfaces";
 import { EventEmitter } from "events";
-import { IKeyEvent } from "../../services/dummy-copilot/interfaces/i-key-event";
-import { IKeylogger } from "../../services/dummy-copilot/interfaces/i-keylogger";
 import fs from "fs";
 import toKey from "./keycodes";
 
 const EVENT_TYPES = ["up", "down", "hold"];
 const EV_KEY = 1;
 
-class Keyboard extends EventEmitter implements IKeylogger {
+class Keylistener extends EventEmitter implements IKeylistener {
     private readonly device: string;
     private readonly data: fs.ReadStream;
 
@@ -50,4 +49,4 @@ class Keyboard extends EventEmitter implements IKeylogger {
     }
 }
 
-export default Keyboard;
+export { IKeylistener, Keylistener };

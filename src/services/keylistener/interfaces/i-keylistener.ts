@@ -1,4 +1,4 @@
 import { IKeyEvent } from "./i-key-event";
-export interface IKeylogger {
+export interface IKeylistener {
     on: (eventName: "down" | "up", listener: (args: IKeyEvent) => void) => this;
 }

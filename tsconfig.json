@@ -3,6 +3,13 @@
         "module": "commonjs",
         "declaration": true,
         "esModuleInterop": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@common/*": ["common/*"],
+            "@usecases/*": ["usecases/*"],
+            "@data-providers/*": ["data-providers/*"],
+            "@services/*": ["services/*"]
+        },
         "lib": ["es2017", "dom"],
         "moduleResolution": "node",
         "noImplicitAny": false,
@@ -12,15 +19,15 @@
         ],
         "allowJs": true,
         "resolveJsonModule": true,
-        "outDir": "build",
+        "outDir": "build/",
         "removeComments": true,
         "sourceMap": true,
-        "target": "es2017"
+        "target": "esnext"
     },
     "include": [
         "src"
     ],
     "exclude": [
-        "build"
+        "./build/**/*"
     ]
 }

@@ -1,7 +1,7 @@
-import { IAction } from "./interfaces/i-action";
-import { IActionMiddleware } from "./interfaces/i-action-middleware";
+import { IAction } from "@common/interfaces";
+import { IActionMiddleware } from "./interfaces";
 
-export default class ActionsExecutor {
+export default class MiddlewaresExecutor {
     private actionMiddlewaresMap: Map<IAction["actionType"], IActionMiddleware>;
     private index = 0;
     private actions: IAction[];

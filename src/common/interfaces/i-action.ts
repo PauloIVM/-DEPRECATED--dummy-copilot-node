@@ -1,4 +1,4 @@
-import { IKey } from "./i-key";
+import { IKey } from ".";
 
 export interface IAction {
     actionType: "sequence" | "paste" | "retrieve_clipboard" | "feed_clipboard";

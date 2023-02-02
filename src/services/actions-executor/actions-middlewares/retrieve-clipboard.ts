@@ -1,6 +1,6 @@
-import { IAction } from "../interfaces/i-action";
-import { IActionMiddleware } from "../interfaces/i-action-middleware";
-import { IContext } from "../interfaces/i-context";
+import { IAction } from "@common/interfaces";
+import { IActionMiddleware } from "../interfaces";
+import { IContext } from "@services/context/interfaces";
 import clipboard from "copy-paste";
 
 export class RetrieveClipboardAction implements IActionMiddleware {

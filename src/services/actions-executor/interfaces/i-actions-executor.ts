@@ -1,4 +1,4 @@
-import { IAction } from "./i-action";
+import { IAction } from "@common/interfaces";
 
 export interface IActionsExecutor {
     exec(actions: IAction[]): void;

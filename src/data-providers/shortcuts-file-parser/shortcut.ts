@@ -1,18 +1,17 @@
-import { Element } from "../../utils/utility-types";
-import { IAction } from "../../services/dummy-copilot/interfaces/i-action";
-import { IKey } from "../../services/dummy-copilot/interfaces/i-key";
-import { IShortcut } from "../../services/dummy-copilot/interfaces/i-shortcut";
+import * as CommonInterfaces from "@common/interfaces";
+import { Element } from "@common/utils/utility-types";
+import { IShortcut } from "@services/dummy-copilot/interfaces";
 
 export class Shortcut implements IShortcut {
-    private trigger: IKey<"down" | "up">[] = [];
-    private actions: IAction[] = [];
-    private readonly validActionsTypes: IAction["actionType"][] = [
+    private trigger: CommonInterfaces.IKey<"down" | "up">[] = [];
+    private actions: CommonInterfaces.IAction[] = [];
+    private readonly validActionsTypes: CommonInterfaces.IAction["actionType"][] = [
         "paste",
         "sequence",
         "feed_clipboard",
         "retrieve_clipboard",
     ];
-    private readonly validActionsKeys: Element<IAction["keys"]>["clickType"][] = [
+    private readonly validActionsKeys: Element<CommonInterfaces.IAction["keys"]>["clickType"][] = [
         "down",
         "up",
         "tap",
@@ -61,7 +60,7 @@ export class Shortcut implements IShortcut {
         return true;
     }
 
-    hasTrigger(queueKeys: IKey<string>[]): boolean {
+    hasTrigger(queueKeys: CommonInterfaces.IKey<string>[]): boolean {
         for (let index = 0; index < this.trigger.length; index++) {
             const triggerKey = this.trigger[index];
             const queueKey = queueKeys[index];
@@ -76,12 +75,15 @@ export class Shortcut implements IShortcut {
         return true;
     }
 
-    private isSameKey<T extends string>(keyA: IKey<T>, keyB: IKey<T>) {
+    private isSameKey<T extends string>(
+        keyA: CommonInterfaces.IKey<T>,
+        keyB: CommonInterfaces.IKey<T>,
+    ) {
         return keyA.keyId === keyB.keyId && keyA.clickType === keyB.clickType;
     }
 
     private hasInvalidKeys<T extends string>(
-        keys: IKey<T>[] | undefined,
+        keys: CommonInterfaces.IKey<T>[] | undefined,
         validValues: string[],
     ): boolean {
         return (

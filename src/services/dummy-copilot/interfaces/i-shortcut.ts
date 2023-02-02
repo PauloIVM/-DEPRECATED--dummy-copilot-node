@@ -1,5 +1,4 @@
-import { IAction } from "./i-action";
-import { IKey } from "./i-key";
+import { IAction, IKey } from "@common/interfaces";
 
 export interface IShortcut {
     getActions(): IAction[];

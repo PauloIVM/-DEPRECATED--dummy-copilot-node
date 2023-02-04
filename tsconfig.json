@@ -8,6 +8,7 @@
         "paths": {
             "@common/*": ["common/*"],
             "@usecases/*": ["usecases/*"],
+            "@controllers/*": ["controllers/*"],
             "@data-providers/*": ["data-providers/*"],
             "@services/*": ["services/*"]
         },

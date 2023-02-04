@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "dummy-copilot": "./build/cli.js"
+  },
   "scripts": {
     "clean": "shx rm -rf build",
     "start": "node build/index.js",
+    "cli": "node build/cli.js",
     "trigger-logger": "node build/trigger-logger.js",
     "build": "npm run clean && tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,15 +26,20 @@
   },
   "homepage": "https://github.com/PauloIVM/dummy-copilot#readme",
   "dependencies": {
+    "commander": "^10.0.0",
     "copy-paste": "^1.3.0",
     "robotjs": "git+https://github.com/octalmage/robotjs.git",
-    "sudo-prompt": "9.2.1"
+    "sudo-prompt": "9.2.1",
+    "ora": "^4.0.3",
+    "prompts": "^2.3.0",
+    "chalk": "^2.4.2"
   },
   "devDependencies": {
     "@types/eslint": "^7.2.3",
     "@types/node": "^18.11.4",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
+    "@types/prompts": "^2.0.13",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-compat": "^3.8.0",
